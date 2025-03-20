@@ -32,3 +32,25 @@ function updateForm(selectElement) {
         `;
     }
 }
+
+document.getElementById('type').addEventListener('change', function() {
+    const formItems = document.getElementById('form-items');
+    formItems.innerHTML = ''; // 기존 항목 초기화
+
+    if (this.value === 'type1') {
+        formItems.innerHTML = `
+            <label for="session">회차:</label>
+            <input type="text" id="session" name="session" required>
+            <br>
+            <label for="address">주소:</label>
+            <input type="text" id="address" name="address" required>
+            <br>
+        `;
+    } else if (this.value === 'type2') {
+        formItems.innerHTML = `
+            <label for="target">초도대상:</label>
+            <input type="text" id="target" name="target" required>
+            <br>
+        `;
+    }
+});
