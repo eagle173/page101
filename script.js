@@ -54,3 +54,32 @@ document.getElementById('type').addEventListener('change', function() {
         `;
     }
 });
+
+document.getElementById('example-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = {
+        name: document.getElementById('name').value,
+        orderNum: document.getElementById('orderNum').value,
+        email: document.getElementById('email').value,
+        type: document.getElementById('type').value,
+        session: document.getElementById('session') ? document.getElementById('session').value : '',
+        address: document.getElementById('address') ? document.getElementById('address').value : '',
+        target: document.getElementById('target') ? document.getElementById('target').value : ''
+    };
+
+    fetch('/submit-form', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
